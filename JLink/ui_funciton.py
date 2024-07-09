@@ -70,7 +70,7 @@ def ap_flash_event(ui):
 def ap_flashing_thread_callback(ui):
     jlink.power_on()
     result = jlink.flash_program(os.path.join(
-        "program_files", ui.programFileComboBox.currentText()))
+        "JLink/program_files", ui.programFileComboBox.currentText()))
     if result:
         ui.flashStatusLabel.setText(
             "Programming Status : <span style=\"color:green\">AP Programming Success</span></p>")
