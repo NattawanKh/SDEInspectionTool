@@ -1,4 +1,6 @@
 from pyocd.core.helpers import ConnectHelper
+
+from pyocd.core.helpers import ConnectHelper
 from pyocd.flash.file_programmer import FileProgrammer
 import os
 
@@ -38,10 +40,33 @@ def firmware_combobox__event():
     #print(firmware_list)
     return firmware_path_list
 
-# Fetch firmware paths
-firmware_combobox__event()
-fw_paths = firmware_combobox__event()
+def detect_target():
+    try:
+        # Connect to the first available probe
+        session = ConnectHelper.session_with_chosen_probe(blocking=False, target_override='stm32g070rbtx')
+        if session is None:
+            print("Failed to open session with the probe.")
+            return
 
-# Flash firmware files
-#for fw_path in fw_paths:
-flash_firmware(fw_paths[0], target_type='STM32G070KBTx')
+        try:
+            session.open()
+            target_type = session.board.target_type
+            unique_id = session.board.unique_id
+            print(f"Detected target: {target_type}")
+            print(f"Unique ID: {unique_id}")
+
+        finally:
+            # Close the session
+            session.close()
+
+    except Exception as e:
+        print(f"Error: {e}")
+
+if __name__ == "__main__":
+    detect_target()
+    # Fetch firmware paths
+    firmware_combobox__event()
+    fw_paths = firmware_combobox__event()
+    # Flash firmware files
+    #for fw_path in fw_paths:
+    flash_firmware(fw_paths[0], target_type='STM32G070KBTx')
