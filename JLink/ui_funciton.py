@@ -129,7 +129,11 @@ def add_good_device_event(ui):
 def add_bad_device_event(ui,inspected_qty):  #### UPDATE
     jlink.power_on()
     lot_id = ui.boxlot_Box.currentText()
-    device_id = lot_id + '-' + inspected_qty
+    device_id = jlink.mac_id_check()
+    if  device_id :
+        pass
+    else:
+        device_id = lot_id + '-' + inspected_qty
     global mac_id_list
     global mcu_data_list
     global header
@@ -140,7 +144,7 @@ def add_bad_device_event(ui,inspected_qty):  #### UPDATE
     if len(mac_id_list) == 3:
         mcu_data_list = []
     mcu_data_list.append([device_id, 'NG', note])
-    db_controller.reject_device(ui,device_id,note,device_type,timestamp)
+    db_controller.reject_device(ui,device_id,device_type,timestamp)
     if len(mac_id_list) == 3:
         log.write_csv(['macID', 'note'], mac_id_list, "JLink/database/devices.csv")
         for device in mac_id_list:

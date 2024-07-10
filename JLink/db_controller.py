@@ -90,7 +90,7 @@ def device_update(ui,mac_id,controller_type,first_stack,second_stack):
                     db_con_up = db_connect()
                     db_con_up.connect_update(t_select,set_to,where)
 #==========================================================================================================================================================================================================================================================================================================================================================================================================================
-def reject_device(ui,device_id,note,device_type,timestamp) :
+def reject_device(ui,device_id,device_type,timestamp) :
     feild_select = 'qty_inspected'
     table_select = 'db_sde.devices_income_box'
     lot_id = ui.boxlot_Box.currentText()
