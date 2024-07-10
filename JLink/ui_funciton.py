@@ -101,17 +101,6 @@ def program_combobox_click_event(ui):
 
 def add_good_device_event(ui):
     global mac_id_list
-    global header
-    action_case = ui.error_point_Box.currentText()
-    lot_reject = ui.boxlot_Box.currentText()
-    feild_select = 'qty_product,qty_inspected'
-    table_select = 'db_sde.devices_income_box'
-    condetion = "lot_box_id = '"+lot_reject+"'"
-    qty_con = db_connect()
-    qty_con.connect_select(table_select,condetion,feild_select)
-    for qty in qty_con :
-        print(qty)
-        pass
     jlink.power_on()
     mac_id = jlink.mac_id_check()
     if not mac_id:
@@ -126,19 +115,9 @@ def add_good_device_event(ui):
             "Device Status : <span style=\"color:red\">Device ID are Duplicated</span></p>")
         return
     else:
-        if int(qty[0]) > int(qty[1]) :
             srr.testing_event(ui)
-        else :
-            ui.flashStatusLabel.setText(
-                "Device Status : <span style=\"color:RED\">Lot No. "+lot_reject+" </span></p>")
-            pass
-
-        
-
-    timestamp = get_date_time()
-
+    
     mac_id_list.append([mac_id, 'note'])
-
     if len(mac_id_list) == 3:
         log.write_csv(['macID', 'note'], mac_id_list, "JLink/database/devices.csv")
         for device in mac_id_list:

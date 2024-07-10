@@ -11,50 +11,44 @@ def set_lineedit_int_only(line_edit):
 def incoming_device(ui):
     set_lineedit_int_only(ui.income_qt) 
     lot_no = ui.incom_date.text()
-    box_num_text = ui.income_box_no.currentText()
-    box_num_index = ui.income_box_no.currentIndex()
     device_qt  = ui.income_qt.text()
-    lot_id =  lot_no + '-' + 'B' +box_num_text
-    print(lot_id)
     null_space = 0
     null_space = str(null_space)
-    if len(lot_no) >= 4 and device_qt != '' and box_num_index > 0 :
+    if len(lot_no) >= 4 and device_qt != '' :
         # ADD Data ===========================================================================================================
         dt_string = get_date_time()
-        income_db = "('"+lot_id+"','"+lot_no+"','"+box_num_text+"','"+device_qt+"','"+null_space+"','"+null_space+"','"+null_space+"','"+null_space+"','"+dt_string+"')"
-        device_db_table = "db_sde.devices_income_box"
+        income_db = "('"+lot_no+"','"+device_qt+"','"+null_space+"','"+null_space+"','"+null_space+"','"+null_space+"','"+dt_string+"')"
+        device_db_table = "db_sde.devices_income_lot"
         device_sensor = db_connect()
         device_sensor.connect_sql_insert(device_db_table,income_db)
         # SHOW STATUS ========================================================================================================
         ui.insign_status.setText(
             "<span style=\"color:WHITE\">Status : </span></p>   <span style=\"color:#4CAF50\">Update Incoming Lot </span></p>")
         # Clear Input ========================================================================================================
-        ui.income_box_no.setCurrentIndex(0)
         ui.income_qt.clear()
         ui.incom_date.clear()
     else :
         ui.insign_status.setText(
             "<span style=\"color:WHITE\">Status : </span></p><span style=\"color:RED\">Invalid Data</span></p>")
-        ui.income_box_no.setCurrentIndex(0)
         ui.income_qt.clear()
         ui.incom_date.clear()
     incoming_list(ui)
 
 def incoming_list(ui) :
-    f_select = "lot_box_id,lot_no,box_no,qty_product,qty_inspected,good_product,ng_product"
-    t_select = "db_sde.devices_income_box"
+    f_select = "lot_no,qty_product,qty_inspected,good_product,ng_product"
+    t_select = "db_sde.devices_income_lot"
     c_select = "status = '0'"
     issue_array = []
     db_con = db_connect()
     db_con.connect_select(t_select,c_select,f_select)
-    columnHeaders = ["Lot ID","Lot No.","Box No.","Quantity"," Inspected QTY","Good","NG"]
+    columnHeaders = ["Lot No.","Quantity"," Inspected QTY","Good","NG"]
     for issue in db_con :
         issue_array.append(issue)
     TableData(ui.incomeTableView, columnHeaders, issue_array)
 
 def lot_id_box(ui) :
-    f_select = "lot_box_id"
-    t_select = "db_sde.devices_income_box"
+    f_select = "lot_no"
+    t_select = "db_sde.devices_income_lot"
     c_select = "status = '0'"
     lot_id_array = []
     ui.boxlot_Box.clear()
@@ -145,8 +139,8 @@ def addDevice_action(ui,qty_status,device_type):
         action_case = ui.error_point_Box.currentText()
         lot_reject = ui.boxlot_Box.currentText()
         feild_select = 'qty_product,qty_inspected'
-        table_select = 'db_sde.devices_income_box'
-        condetion = "lot_box_id = '"+lot_reject+"'"
+        table_select = 'db_sde.devices_income_lot'
+        condetion = "lot_no = '"+lot_reject+"'"
         qty_con = db_connect()
         qty_con.connect_select(table_select,condetion,feild_select)
         for qty in qty_con :
@@ -160,13 +154,13 @@ def addDevice_action(ui,qty_status,device_type):
                     if qty_status == 'ng_product' :
                         uif.add_bad_device_event(ui,inspected_qty)
                         f_select = ['qty_ng_product',qty_status,'qty_inspected']
-                        t_select = ["db_sde.devices_income_issue","db_sde.devices_income_box","db_sde.devices_income_box"]
-                        c_select = ["issue_name = '"+action_case+"' ","lot_box_id = '"+lot_reject+"'","lot_box_id = '"+lot_reject+"'"]
+                        t_select = ["db_sde.devices_income_issue","db_sde.devices_income_lot","db_sde.devices_income_lot"]
+                        c_select = ["issue_name = '"+action_case+"' ","lot_no = '"+lot_reject+"'","lot_no = '"+lot_reject+"'"]
                         rounds = ['0','1','2']
                     else :
                         f_select = [qty_status,'qty_inspected']
-                        t_select = ["db_sde.devices_income_box","db_sde.devices_income_box"]
-                        c_select = ["lot_box_id = '"+lot_reject+"'","lot_box_id = '"+lot_reject+"'"]
+                        t_select = ["db_sde.devices_income_lot","db_sde.devices_income_lot"]
+                        c_select = ["lot_no = '"+lot_reject+"'","lot_no = '"+lot_reject+"'"]
                         rounds = ['0','1']
                     for round in rounds :
                         round = int(round)

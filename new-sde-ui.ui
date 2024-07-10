@@ -561,7 +561,7 @@ QPushButton:pressed {
        <bool>false</bool>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="controller_page">
        <layout class="QGridLayout" name="gridLayout_7">
@@ -2621,7 +2621,7 @@ padding: 0px 0px;</string>
            <property name="geometry">
             <rect>
              <x>20</x>
-             <y>390</y>
+             <y>352</y>
              <width>361</width>
              <height>40</height>
             </rect>
@@ -2700,7 +2700,7 @@ QComboBox QListView::item{
            <property name="geometry">
             <rect>
              <x>20</x>
-             <y>451</y>
+             <y>413</y>
              <width>361</width>
              <height>40</height>
             </rect>
@@ -2734,7 +2734,7 @@ QLineEdit:focus{
            <property name="geometry">
             <rect>
              <x>11</x>
-             <y>353</y>
+             <y>315</y>
              <width>381</width>
              <height>20</height>
             </rect>
@@ -2762,7 +2762,7 @@ QLineEdit:focus{
            <property name="geometry">
             <rect>
              <x>21</x>
-             <y>333</y>
+             <y>295</y>
              <width>186</width>
              <height>32</height>
             </rect>
@@ -2786,7 +2786,7 @@ QLineEdit:focus{
            <property name="geometry">
             <rect>
              <x>20</x>
-             <y>510</y>
+             <y>472</y>
              <width>361</width>
              <height>41</height>
             </rect>
@@ -2873,7 +2873,7 @@ QLineEdit:focus{
            <property name="geometry">
             <rect>
              <x>112</x>
-             <y>220</y>
+             <y>173</y>
              <width>211</width>
              <height>40</height>
             </rect>
@@ -2907,7 +2907,7 @@ QLineEdit:focus{
            <property name="geometry">
             <rect>
              <x>20</x>
-             <y>277</y>
+             <y>230</y>
              <width>361</width>
              <height>41</height>
             </rect>
@@ -2956,120 +2956,6 @@ QPushButton:pressed {
             <bool>false</bool>
            </property>
           </widget>
-          <widget class="QComboBox" name="income_box_no">
-           <property name="geometry">
-            <rect>
-             <x>111</x>
-             <y>170</y>
-             <width>211</width>
-             <height>40</height>
-            </rect>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>40</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>SCG</family>
-             <pointsize>15</pointsize>
-            </font>
-           </property>
-           <property name="cursor">
-            <cursorShape>PointingHandCursor</cursorShape>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QComboBox{	
-	background-color:white;
-	border-radius: 5px;
-	border:1px solid black;
-	padding-left:10px;
-}
-QComboBox::drop-down{
-	border:0px
-}
-
-QComboBox::down-arrow {
-	image:url(:/newPrefix/assets/arrow-down-sign-to-navigate.png);
-	width:15px;	
-	heigth:15px;
-	margin-right:15px;
-}
-QComboBox:on{
-	border:4px solid #c2dbfe;
-}
-
-QComboBox QListView{
-	background-color:white;
-	border-radius: 5px;
-}
-
-QComboBox QListView::item{
-	padding-left:10px;
-    border:1px solid rgba(0,0,0,10%);
-	background-color:#fff;
-    outline:0px;
-}
-</string>
-           </property>
-           <item>
-            <property name="text">
-             <string>Box No.</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>01</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>02</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>03</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>04</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>05</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>06</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>07</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>08</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>09</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>10</string>
-            </property>
-           </item>
-          </widget>
           <widget class="QLabel" name="label_32">
            <property name="geometry">
             <rect>
@@ -3094,35 +2980,11 @@ QComboBox QListView::item{
             <string>Lot No.</string>
            </property>
           </widget>
-          <widget class="QLabel" name="label_36">
-           <property name="geometry">
-            <rect>
-             <x>20</x>
-             <y>174</y>
-             <width>81</width>
-             <height>32</height>
-            </rect>
-           </property>
-           <property name="font">
-            <font>
-             <family>SCG</family>
-             <pointsize>15</pointsize>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">color:white;
-	text-align:center;
-	font-size:15pt;</string>
-           </property>
-           <property name="text">
-            <string>Box No.</string>
-           </property>
-          </widget>
           <widget class="QLabel" name="label_37">
            <property name="geometry">
             <rect>
              <x>22</x>
-             <y>225</y>
+             <y>178</y>
              <width>81</width>
              <height>32</height>
             </rect>
