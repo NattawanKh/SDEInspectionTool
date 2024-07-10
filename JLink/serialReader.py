@@ -77,7 +77,7 @@ def ReadSerial_Controller(ui):
 # the received Actuator Data ================================================================================================
             # Level Switch ================================
             elif line.startswith('<info> app: Relay output'):
-                device_type = 'Actuator Controller'
+                device_type = 'Actuator Controller 3CH'
                 act_data = line.strip()
                 act_stat = act_data[25:]
                 act_cn_lv = len(act_stack)
@@ -85,7 +85,7 @@ def ReadSerial_Controller(ui):
                  act_stack.append(act_stat)
             # Current ======================================= 
             elif line.startswith('<info> app: Current output'):
-                device_type = 'Actuator Controller'
+                device_type = 'Actuator Controller 3CH'
                 act_curr = line.strip()
                 act_amp = act_curr[27:]
                 act_cn = len(curr_stack)

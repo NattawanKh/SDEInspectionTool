@@ -105,7 +105,7 @@ def issue_list(ui) :
 def set_issue_reject_box(ui) :
     f_select = "issue_name"
     t_select = "db_sde.devices_income_issue"
-    c_select = [None,"device_type = 'Actuator Controller' or device_type = 'All' ","device_type = 'Sensor Controller' or device_type = 'All' "]
+    c_select = [None,"device_type = 'Actuator Controller 3CH' or device_type = 'All' ","device_type = 'Sensor Controller' or device_type = 'All' "]
     issue_array = []
     ui.error_point_Box.clear()
     db_con = db_connect()

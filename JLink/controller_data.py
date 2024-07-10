@@ -25,7 +25,7 @@ def onboard_show(ui):
                    ["Date","Device ID","HIGH","OFF","LOW","MID","Defect"],
                    ["Date","Device ID"," PM2.5(ug/m3) "," CO2(ppm) "," Temp(*C) "," Humid(%) ","Defect"])
     # Device Data Condition =====================================================================================
-    device_type = ['',"AND devices_type = 'Actuator Controller' ","AND devices_type = 'Sensor Controller' "] ### Edit to AC back
+    device_type = ['',"AND devices_type LIKE '%Actuator%' ","AND devices_type LIKE '%Sensor%' "] ### Edit to AC back
     nrf_id = ui.device_id_input.text()
     device_id  = ['',"AND device_id LIKE '%"+nrf_id+"%'"]
     if nrf_id == '' :
