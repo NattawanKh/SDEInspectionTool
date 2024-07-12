@@ -126,33 +126,39 @@ def add_good_device_event(ui):
 
 
     
-def add_bad_device_event(ui,inspected_qty):  #### UPDATE
+def add_bad_device_event(ui):  #### UPDATE
     jlink.power_on()
-    lot_id = ui.boxlot_Box.currentText()
-    device_id = jlink.mac_id_check()
-    if  device_id :
-        pass
-    else:
-        device_id = lot_id + '-' + inspected_qty
     global mac_id_list
     global mcu_data_list
     global header
+    device_id = jlink.mac_id_check()
     timestamp = get_date_time()
-    note = ui.error_point_Box.currentText()
-    device_type = ui.error_type_box.currentText()
-    mac_id_list.append([device_id, note])
-    if len(mac_id_list) == 3:
-        mcu_data_list = []
-    mcu_data_list.append([device_id, 'NG', note])
-    db_controller.reject_device(ui,device_id,device_type,timestamp)
-    if len(mac_id_list) == 3:
-        log.write_csv(['macID', 'note'], mac_id_list, "JLink/database/devices.csv")
-        for device in mac_id_list:
-            print(device)
-            log.update_print_label_by_mac_id(device[0])
-        mac_id_list = []
-        mcu_data_list = []
-    populate_table_view(ui.devicesTableView, header, mcu_data_list)
+    if not device_id:
+        ui.flashStatusLabel.setText(
+            "Device Status : <span style=\"color:red\">Read Device ID Fail</span></p>")
+        return
+    is_mac_id_duplicated = check_value_in_lists(mac_id_list, device_id)
+    if is_mac_id_duplicated:
+        ui.flashStatusLabel.setText(
+            "Device Status : <span style=\"color:red\">Device ID are Duplicated</span></p>")
+        return
+    else:
+        device_type = ui.error_type_box.currentIndex()
+        device_type_real = ["All","Actuator Controller 3CH","Sensor Controller"]
+        db_controller.reject_device(ui,device_id,device_type_real[device_type],timestamp)
+        note = ui.error_point_Box.currentText()
+        mac_id_list.append([device_id, 'NG',note])
+        if len(mac_id_list) == 3:
+            mcu_data_list = []
+        mcu_data_list.append([device_id, 'NG',note])
+        if len(mac_id_list) == 3:
+            log.write_csv(['macID', 'note'], mac_id_list, "JLink/database/devices.csv")
+            for device in mac_id_list:
+                print(device)
+                log.update_print_label_by_mac_id(device[0])
+            mac_id_list = []
+            mcu_data_list = []
+        populate_table_view(ui.devicesTableView, header, mcu_data_list)
 
 
 def clear_list_event(ui):
@@ -199,7 +205,7 @@ def onboard_data_ui(ui,type,data1,data2) :
         mcu_data_list.append([mac_id,note,pm_all[1],scd_all[0],scd_all[1],scd_all[2]])
         #populate_table_view(ui.devicesTableView, header, mcu_data_list)
         pass
-    elif type == 'Actuator Controller' :
+    elif type == 'Actuator Controller 3CH' :
         if len(mcu_data_list) == 3:
             mcu_data_list = []
         for level in data1 :

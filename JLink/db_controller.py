@@ -91,17 +91,36 @@ def device_update(ui,mac_id,controller_type,first_stack,second_stack):
                     db_con_up.connect_update(t_select,set_to,where)
 #==========================================================================================================================================================================================================================================================================================================================================================================================================================
 def reject_device(ui,device_id,device_type,timestamp) :
-    feild_select = 'qty_inspected'
-    table_select = 'db_sde.devices_income_box'
-    lot_id = ui.boxlot_Box.currentText()
+    # Check Duplicate Device ID ===================================
+    f_select = "device_id"
+    t_select = "db_sde.devices_income"
+    lot_no = ui.boxlot_Box.currentText()
     issue_name = ui.error_point_Box.currentText()
-    condetion = "lot_box_id = '"+lot_id+"'"
-    qty_con = db_connect()
-    qty_con.connect_select(table_select,condetion,feild_select)
-    reject_data = db_connect()
-    null = ''
-    table = "db_sde.devices_income"
-    value = "('"+device_id+"','NG','"+device_type+"','"+null+"','"+null+"','"+null+"','"+null+"','"+null+"','"+null+"','"+null+"','"+null+"','"+null+"','"+null+"','"+null+"','"+null+"','"+null+"','"+null+"','"+lot_id+"','"+issue_name+"','0','"+timestamp+"')"
-    reject_data.connect_sql_insert(table,value)
-    pass
-#==========================================================================================================================================================================================================================================================================================================================================================================================================================
+    print(lot_no)
+    c_select = None
+    db_con = db_connect()
+    db_con.connect_select(t_select,c_select,f_select)
+    #==============================================================
+    this_mac_con = db_connect()
+    condition = "device_id = '"+device_id+"'"
+    this_mac_con.connect_select(t_select,condition,f_select)
+    this_mac_array = []
+    for this_mac in this_mac_con :
+        print("====================================================")
+        print(this_mac)
+        this_mac_array.append(this_mac)
+    if len(this_mac_array) != 0:
+        ui.flashStatusLabel.setText(
+            "Device Status : <span style=\"color:red\">Device ID are Duplicated</span></p>")
+        return
+    else :
+        #=============================================================
+        reject_data = db_connect()
+        null = ''
+        table = "db_sde.devices_income"
+        value = "('"+device_id+"','NG','"+device_type+"','"+null+"','"+null+"','"+null+"','"+null+"','"+null+"','"+null+"','"+null+"','"+null+"','"+null+"','"+null+"','"+null+"','"+null+"','"+null+"','"+null+"','"+str(lot_no)+"','"+str(issue_name)+"','0','"+str(timestamp)+"')"
+        reject_data.connect_sql_insert(table,value)
+        #==============================================================
+        qty_status = 'ng_product'
+        insign_db.addDevice_action(ui,qty_status,device_type)
+    #==========================================================================================================================================================================================================================================================================================================================================================================================================================

@@ -64,10 +64,8 @@ def addGood_action(ui) :
 
 def reject_action(ui) :
     print(ui.boxlot_Box.count())
-    if ui.boxlot_Box.count() > 0 :
-        qty_status = 'ng_product'
-        controller_type  = ui.error_type_box.count()
-        insign_db.addDevice_action(ui,qty_status,controller_type)
+    if ui.boxlot_Box.count() :
+        add_bad_device_event(ui)
     else :
         ui.flashStatusLabel.setText(
         "Device Status : <span style=\"color:RED\">Not Found Lot No.</span></p>")

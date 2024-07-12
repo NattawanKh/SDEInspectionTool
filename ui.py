@@ -32,15 +32,27 @@ class Ui_MainWindow(object):
         self.big_menu.setObjectName("big_menu")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.big_menu)
         self.gridLayout_3.setObjectName("gridLayout_3")
-        self.big_db_btn = QtWidgets.QPushButton(self.big_menu)
+        self.big_menu_btn = QtWidgets.QPushButton(self.big_menu)
+        self.big_menu_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.big_menu_btn.setText("")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/newPrefix/assets/SDE-Logo-Login_mini.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.big_menu_btn.setIcon(icon)
+        self.big_menu_btn.setIconSize(QtCore.QSize(150, 150))
+        self.big_menu_btn.setCheckable(True)
+        self.big_menu_btn.setObjectName("big_menu_btn")
+        self.gridLayout_3.addWidget(self.big_menu_btn, 2, 1, 1, 1)
+        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_3.addItem(spacerItem, 6, 1, 1, 1)
+        self.big_insign_bt = QtWidgets.QPushButton(self.big_menu)
         font = QtGui.QFont()
         font.setFamily("SCG")
         font.setPointSize(15)
         font.setBold(True)
         font.setWeight(75)
-        self.big_db_btn.setFont(font)
-        self.big_db_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.big_db_btn.setStyleSheet("QPushButton {\n"
+        self.big_insign_bt.setFont(font)
+        self.big_insign_bt.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.big_insign_bt.setStyleSheet("QPushButton {\n"
 "    text-align:left;\n"
 "   color:white;\n"
 "    background-color:    #222222;\n"
@@ -54,26 +66,14 @@ class Ui_MainWindow(object):
 "    background-color: #b71c1c; /* Even Darker Red when pressed */\n"
 "}\n"
 "")
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/icon/assets/document-2-64.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.big_db_btn.setIcon(icon)
-        self.big_db_btn.setIconSize(QtCore.QSize(25, 25))
-        self.big_db_btn.setCheckable(True)
-        self.big_db_btn.setChecked(True)
-        self.big_db_btn.setObjectName("big_db_btn")
-        self.gridLayout_3.addWidget(self.big_db_btn, 4, 1, 1, 1)
-        self.big_menu_btn = QtWidgets.QPushButton(self.big_menu)
-        self.big_menu_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.big_menu_btn.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/newPrefix/assets/SDE-Logo-Login_mini.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.big_menu_btn.setIcon(icon1)
-        self.big_menu_btn.setIconSize(QtCore.QSize(150, 150))
-        self.big_menu_btn.setCheckable(True)
-        self.big_menu_btn.setObjectName("big_menu_btn")
-        self.gridLayout_3.addWidget(self.big_menu_btn, 2, 1, 1, 1)
-        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout_3.addItem(spacerItem, 6, 1, 1, 1)
+        icon1.addPixmap(QtGui.QPixmap(":/icon/assets/box-3-64.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.big_insign_bt.setIcon(icon1)
+        self.big_insign_bt.setIconSize(QtCore.QSize(25, 25))
+        self.big_insign_bt.setCheckable(True)
+        self.big_insign_bt.setChecked(True)
+        self.big_insign_bt.setObjectName("big_insign_bt")
+        self.gridLayout_3.addWidget(self.big_insign_bt, 5, 1, 1, 1)
         self.big_controller_btn = QtWidgets.QPushButton(self.big_menu)
         font = QtGui.QFont()
         font.setFamily("SCG")
@@ -97,22 +97,22 @@ class Ui_MainWindow(object):
 "}\n"
 "")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(":/icon/assets/integrated-circuit-64.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap(":/icon/assets/chip-2-64.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.big_controller_btn.setIcon(icon2)
         self.big_controller_btn.setIconSize(QtCore.QSize(25, 25))
         self.big_controller_btn.setCheckable(True)
         self.big_controller_btn.setChecked(True)
         self.big_controller_btn.setObjectName("big_controller_btn")
         self.gridLayout_3.addWidget(self.big_controller_btn, 3, 1, 1, 1)
-        self.big_insign_bt = QtWidgets.QPushButton(self.big_menu)
+        self.big_db_btn = QtWidgets.QPushButton(self.big_menu)
         font = QtGui.QFont()
         font.setFamily("SCG")
         font.setPointSize(15)
         font.setBold(True)
         font.setWeight(75)
-        self.big_insign_bt.setFont(font)
-        self.big_insign_bt.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.big_insign_bt.setStyleSheet("QPushButton {\n"
+        self.big_db_btn.setFont(font)
+        self.big_db_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.big_db_btn.setStyleSheet("QPushButton {\n"
 "    text-align:left;\n"
 "   color:white;\n"
 "    background-color:    #222222;\n"
@@ -127,13 +127,13 @@ class Ui_MainWindow(object):
 "}\n"
 "")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(":/icon/assets/box-3-64.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.big_insign_bt.setIcon(icon3)
-        self.big_insign_bt.setIconSize(QtCore.QSize(25, 25))
-        self.big_insign_bt.setCheckable(True)
-        self.big_insign_bt.setChecked(True)
-        self.big_insign_bt.setObjectName("big_insign_bt")
-        self.gridLayout_3.addWidget(self.big_insign_bt, 5, 1, 1, 1)
+        icon3.addPixmap(QtGui.QPixmap(":/icon/assets/document-2-64.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.big_db_btn.setIcon(icon3)
+        self.big_db_btn.setIconSize(QtCore.QSize(25, 25))
+        self.big_db_btn.setCheckable(True)
+        self.big_db_btn.setChecked(True)
+        self.big_db_btn.setObjectName("big_db_btn")
+        self.gridLayout_3.addWidget(self.big_db_btn, 4, 1, 1, 1)
         self.gridLayout.addWidget(self.big_menu, 0, 1, 1, 1)
         self.mini_menu = QtWidgets.QFrame(self.centralwidget)
         self.mini_menu.setMaximumSize(QtCore.QSize(75, 16777215))
@@ -145,32 +145,6 @@ class Ui_MainWindow(object):
         self.mini_menu.setObjectName("mini_menu")
         self.gridLayout_4 = QtWidgets.QGridLayout(self.mini_menu)
         self.gridLayout_4.setObjectName("gridLayout_4")
-        self.mini_db_btn = QtWidgets.QPushButton(self.mini_menu)
-        self.mini_db_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.mini_db_btn.setStyleSheet("QPushButton {\n"
-"   color:white;\n"
-"    background-color:    #222222;\n"
-"    border-radius: 0px;\n"
-"    padding: 5px 0px;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #f44336; /* Darker Red */\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #b71c1c; /* Even Darker Red when pressed */\n"
-"}\n"
-"")
-        self.mini_db_btn.setText("")
-        self.mini_db_btn.setIcon(icon)
-        self.mini_db_btn.setIconSize(QtCore.QSize(25, 25))
-        self.mini_db_btn.setCheckable(True)
-        self.mini_db_btn.setChecked(True)
-        self.mini_db_btn.setObjectName("mini_db_btn")
-        self.gridLayout_4.addWidget(self.mini_db_btn, 4, 0, 1, 1)
-        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout_4.addItem(spacerItem1, 6, 0, 1, 1)
         self.mini_controller_btn = QtWidgets.QPushButton(self.mini_menu)
         self.mini_controller_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.mini_controller_btn.setStyleSheet("QPushButton {\n"
@@ -195,19 +169,34 @@ class Ui_MainWindow(object):
         self.mini_controller_btn.setChecked(True)
         self.mini_controller_btn.setObjectName("mini_controller_btn")
         self.gridLayout_4.addWidget(self.mini_controller_btn, 3, 0, 1, 1)
+        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_4.addItem(spacerItem1, 6, 0, 1, 1)
         spacerItem2 = QtWidgets.QSpacerItem(20, 10, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         self.gridLayout_4.addItem(spacerItem2, 1, 0, 1, 1)
-        self.mini_menu_btn = QtWidgets.QPushButton(self.mini_menu)
-        self.mini_menu_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.mini_menu_btn.setStyleSheet("padding: 10px 10px;")
-        self.mini_menu_btn.setText("")
-        icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap(":/icon/assets/menu-4-64.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.mini_menu_btn.setIcon(icon4)
-        self.mini_menu_btn.setIconSize(QtCore.QSize(20, 20))
-        self.mini_menu_btn.setCheckable(True)
-        self.mini_menu_btn.setObjectName("mini_menu_btn")
-        self.gridLayout_4.addWidget(self.mini_menu_btn, 0, 0, 1, 1)
+        self.mini_db_btn = QtWidgets.QPushButton(self.mini_menu)
+        self.mini_db_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.mini_db_btn.setStyleSheet("QPushButton {\n"
+"   color:white;\n"
+"    background-color:    #222222;\n"
+"    border-radius: 0px;\n"
+"    padding: 5px 0px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #f44336; /* Darker Red */\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #b71c1c; /* Even Darker Red when pressed */\n"
+"}\n"
+"")
+        self.mini_db_btn.setText("")
+        self.mini_db_btn.setIcon(icon3)
+        self.mini_db_btn.setIconSize(QtCore.QSize(25, 25))
+        self.mini_db_btn.setCheckable(True)
+        self.mini_db_btn.setChecked(True)
+        self.mini_db_btn.setObjectName("mini_db_btn")
+        self.gridLayout_4.addWidget(self.mini_db_btn, 4, 0, 1, 1)
         self.mini_insign_bt = QtWidgets.QPushButton(self.mini_menu)
         self.mini_insign_bt.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.mini_insign_bt.setStyleSheet("QPushButton {\n"
@@ -226,12 +215,23 @@ class Ui_MainWindow(object):
 "}\n"
 "")
         self.mini_insign_bt.setText("")
-        self.mini_insign_bt.setIcon(icon3)
+        self.mini_insign_bt.setIcon(icon1)
         self.mini_insign_bt.setIconSize(QtCore.QSize(25, 25))
         self.mini_insign_bt.setCheckable(True)
         self.mini_insign_bt.setChecked(True)
         self.mini_insign_bt.setObjectName("mini_insign_bt")
         self.gridLayout_4.addWidget(self.mini_insign_bt, 5, 0, 1, 1)
+        self.mini_menu_btn = QtWidgets.QPushButton(self.mini_menu)
+        self.mini_menu_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.mini_menu_btn.setStyleSheet("padding: 10px 10px;")
+        self.mini_menu_btn.setText("")
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap(":/icon/assets/menu-4-64.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.mini_menu_btn.setIcon(icon4)
+        self.mini_menu_btn.setIconSize(QtCore.QSize(20, 20))
+        self.mini_menu_btn.setCheckable(True)
+        self.mini_menu_btn.setObjectName("mini_menu_btn")
+        self.gridLayout_4.addWidget(self.mini_menu_btn, 0, 0, 1, 1)
         self.gridLayout.addWidget(self.mini_menu, 0, 0, 1, 1)
         self.main_page = QtWidgets.QStackedWidget(self.centralwidget)
         self.main_page.setEnabled(True)
@@ -245,20 +245,6 @@ class Ui_MainWindow(object):
         self.controller_page.setObjectName("controller_page")
         self.gridLayout_7 = QtWidgets.QGridLayout(self.controller_page)
         self.gridLayout_7.setObjectName("gridLayout_7")
-        self.label = QtWidgets.QLabel(self.controller_page)
-        font = QtGui.QFont()
-        font.setFamily("SCG")
-        font.setPointSize(15)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label.setFont(font)
-        self.label.setStyleSheet("color:white;\n"
-"background-color:#222222;\n"
-"border-radius: 10px;\n"
-"padding: 10px 10px;\n"
-"margin-right:0px")
-        self.label.setObjectName("label")
-        self.gridLayout_7.addWidget(self.label, 0, 0, 1, 6)
         self.frame_2 = QtWidgets.QFrame(self.controller_page)
         self.frame_2.setStyleSheet("background-color:#d9dadb;\n"
 "border-radius: 10px;")
@@ -435,7 +421,7 @@ class Ui_MainWindow(object):
         spacerItem4 = QtWidgets.QSpacerItem(2, 2, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         self.verticalLayout_2.addItem(spacerItem4)
         self.gridLayout_6.addLayout(self.verticalLayout_2, 1, 1, 1, 1)
-        self.gridLayout_7.addWidget(self.frame_2, 2, 0, 1, 5)
+        self.gridLayout_7.addWidget(self.frame_2, 2, 0, 1, 4)
         self.frame = QtWidgets.QFrame(self.controller_page)
         self.frame.setMaximumSize(QtCore.QSize(220, 16777215))
         self.frame.setStyleSheet("background-color:#222222;\n"
@@ -894,75 +880,21 @@ class Ui_MainWindow(object):
         self.error_point_Box.raise_()
         self.RejectButton.raise_()
         self.error_type_box.raise_()
-        self.gridLayout_7.addWidget(self.frame, 1, 5, 2, 1)
-        self.eraseButton = QtWidgets.QPushButton(self.controller_page)
-        self.eraseButton.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.gridLayout_7.addWidget(self.frame, 1, 4, 2, 1)
+        self.label = QtWidgets.QLabel(self.controller_page)
         font = QtGui.QFont()
         font.setFamily("SCG")
         font.setPointSize(15)
         font.setBold(True)
         font.setWeight(75)
-        self.eraseButton.setFont(font)
-        self.eraseButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.eraseButton.setContextMenuPolicy(QtCore.Qt.PreventContextMenu)
-        self.eraseButton.setStyleSheet("QPushButton {\n"
-"    background-color:#f44336;\n"
-"    color:white;\n"
-"    border: none;\n"
-"    border-radius: 5px;\n"
-"    padding: 5px 5px;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #d32f2f; /* Darker Green */\n"
-"box-shadow: 10px 10px 5px rgba(182, 191, 193, 0.5);\n"
-"    border:1px solid #808080;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #b71c1c; /* Even Darker Green when pressed */\n"
-"}")
-        self.eraseButton.setText("")
-        icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap(":/icon/assets/delete-64.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.eraseButton.setIcon(icon8)
-        self.eraseButton.setIconSize(QtCore.QSize(22, 22))
-        self.eraseButton.setObjectName("eraseButton")
-        self.gridLayout_7.addWidget(self.eraseButton, 1, 4, 1, 1)
-        self.flashButton = QtWidgets.QPushButton(self.controller_page)
-        self.flashButton.setMaximumSize(QtCore.QSize(100, 16777215))
-        font = QtGui.QFont()
-        font.setFamily("SCG")
-        font.setPointSize(15)
-        font.setBold(True)
-        font.setWeight(75)
-        self.flashButton.setFont(font)
-        self.flashButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.flashButton.setContextMenuPolicy(QtCore.Qt.PreventContextMenu)
-        self.flashButton.setStyleSheet("QPushButton {\n"
-"    background-color:#06768d;\n"
-"    color:white;\n"
-"    border: none;\n"
-"    border-radius: 5px;\n"
-"    padding: 5px 5px;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #065465; /* Darker Green */\n"
-"box-shadow: 10px 10px 5px rgba(182, 191, 193, 0.5);\n"
-"    border:1px solid #808080;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #003747; /* Even Darker Green when pressed */\n"
-"}")
-        self.flashButton.setText("")
-        icon9 = QtGui.QIcon()
-        icon9.addPixmap(QtGui.QPixmap(":/icon/assets/download-2-64.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.flashButton.setIcon(icon9)
-        self.flashButton.setIconSize(QtCore.QSize(22, 22))
-        self.flashButton.setObjectName("flashButton")
-        self.gridLayout_7.addWidget(self.flashButton, 1, 3, 1, 1)
+        self.label.setFont(font)
+        self.label.setStyleSheet("color:white;\n"
+"background-color:#222222;\n"
+"border-radius: 10px;\n"
+"padding: 10px 10px;\n"
+"margin-right:0px")
+        self.label.setObjectName("label")
+        self.gridLayout_7.addWidget(self.label, 0, 0, 1, 5)
         self.programFileComboBox = QtWidgets.QComboBox(self.controller_page)
         self.programFileComboBox.setMaximumSize(QtCore.QSize(16777215, 40))
         font = QtGui.QFont()
@@ -1004,7 +936,75 @@ class Ui_MainWindow(object):
 "}\n"
 "")
         self.programFileComboBox.setObjectName("programFileComboBox")
-        self.gridLayout_7.addWidget(self.programFileComboBox, 1, 0, 1, 3)
+        self.gridLayout_7.addWidget(self.programFileComboBox, 1, 0, 1, 2)
+        self.eraseButton = QtWidgets.QPushButton(self.controller_page)
+        self.eraseButton.setMaximumSize(QtCore.QSize(100, 16777215))
+        font = QtGui.QFont()
+        font.setFamily("SCG")
+        font.setPointSize(15)
+        font.setBold(True)
+        font.setWeight(75)
+        self.eraseButton.setFont(font)
+        self.eraseButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.eraseButton.setContextMenuPolicy(QtCore.Qt.PreventContextMenu)
+        self.eraseButton.setStyleSheet("QPushButton {\n"
+"    background-color:#f44336;\n"
+"    color:white;\n"
+"    border: none;\n"
+"    border-radius: 5px;\n"
+"    padding: 5px 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #d32f2f; /* Darker Green */\n"
+"box-shadow: 10px 10px 5px rgba(182, 191, 193, 0.5);\n"
+"    border:1px solid #808080;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #b71c1c; /* Even Darker Green when pressed */\n"
+"}")
+        self.eraseButton.setText("")
+        icon8 = QtGui.QIcon()
+        icon8.addPixmap(QtGui.QPixmap(":/icon/assets/delete-64.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.eraseButton.setIcon(icon8)
+        self.eraseButton.setIconSize(QtCore.QSize(22, 22))
+        self.eraseButton.setObjectName("eraseButton")
+        self.gridLayout_7.addWidget(self.eraseButton, 1, 3, 1, 1)
+        self.flashButton = QtWidgets.QPushButton(self.controller_page)
+        self.flashButton.setMaximumSize(QtCore.QSize(100, 16777215))
+        font = QtGui.QFont()
+        font.setFamily("SCG")
+        font.setPointSize(15)
+        font.setBold(True)
+        font.setWeight(75)
+        self.flashButton.setFont(font)
+        self.flashButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.flashButton.setContextMenuPolicy(QtCore.Qt.PreventContextMenu)
+        self.flashButton.setStyleSheet("QPushButton {\n"
+"    background-color:#06768d;\n"
+"    color:white;\n"
+"    border: none;\n"
+"    border-radius: 5px;\n"
+"    padding: 5px 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #065465; /* Darker Green */\n"
+"box-shadow: 10px 10px 5px rgba(182, 191, 193, 0.5);\n"
+"    border:1px solid #808080;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #003747; /* Even Darker Green when pressed */\n"
+"}")
+        self.flashButton.setText("")
+        icon9 = QtGui.QIcon()
+        icon9.addPixmap(QtGui.QPixmap(":/icon/assets/download-2-64.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.flashButton.setIcon(icon9)
+        self.flashButton.setIconSize(QtCore.QSize(22, 22))
+        self.flashButton.setObjectName("flashButton")
+        self.gridLayout_7.addWidget(self.flashButton, 1, 2, 1, 1)
         self.main_page.addWidget(self.controller_page)
         self.controller_data = QtWidgets.QWidget()
         self.controller_data.setObjectName("controller_data")
@@ -1417,7 +1417,7 @@ class Ui_MainWindow(object):
 "    font-size:18pt;")
         self.label_30.setObjectName("label_30")
         self.error_type = QtWidgets.QComboBox(self.frame_5)
-        self.error_type.setGeometry(QtCore.QRect(20, 390, 361, 40))
+        self.error_type.setGeometry(QtCore.QRect(20, 352, 361, 40))
         self.error_type.setMaximumSize(QtCore.QSize(16777215, 40))
         font = QtGui.QFont()
         font.setFamily("SCG")
@@ -1462,7 +1462,7 @@ class Ui_MainWindow(object):
         self.error_type.addItem("")
         self.error_type.addItem("")
         self.issue_input = QtWidgets.QLineEdit(self.frame_5)
-        self.issue_input.setGeometry(QtCore.QRect(20, 451, 361, 40))
+        self.issue_input.setGeometry(QtCore.QRect(20, 413, 361, 40))
         self.issue_input.setMaximumSize(QtCore.QSize(16777215, 40))
         self.issue_input.setStyleSheet("QLineEdit{\n"
 "    background-color:white;\n"
@@ -1477,7 +1477,7 @@ class Ui_MainWindow(object):
         self.issue_input.setMaxLength(16)
         self.issue_input.setObjectName("issue_input")
         self.label_19 = QtWidgets.QLabel(self.frame_5)
-        self.label_19.setGeometry(QtCore.QRect(11, 353, 381, 20))
+        self.label_19.setGeometry(QtCore.QRect(11, 315, 381, 20))
         font = QtGui.QFont()
         font.setFamily("SCG")
         font.setPointSize(15)
@@ -1491,7 +1491,7 @@ class Ui_MainWindow(object):
 "    text-align:center;")
         self.label_19.setObjectName("label_19")
         self.label_31 = QtWidgets.QLabel(self.frame_5)
-        self.label_31.setGeometry(QtCore.QRect(21, 333, 186, 32))
+        self.label_31.setGeometry(QtCore.QRect(21, 295, 186, 32))
         font = QtGui.QFont()
         font.setFamily("SCG")
         font.setPointSize(18)
@@ -1501,7 +1501,7 @@ class Ui_MainWindow(object):
 "    font-size:18pt;")
         self.label_31.setObjectName("label_31")
         self.update_issue_bt = QtWidgets.QPushButton(self.frame_5)
-        self.update_issue_bt.setGeometry(QtCore.QRect(20, 510, 361, 41))
+        self.update_issue_bt.setGeometry(QtCore.QRect(20, 472, 361, 41))
         font = QtGui.QFont()
         font.setFamily("SCG")
         font.setPointSize(15)
@@ -1545,7 +1545,7 @@ class Ui_MainWindow(object):
         self.incom_date.setMaxLength(13)
         self.incom_date.setObjectName("incom_date")
         self.income_qt = QtWidgets.QLineEdit(self.frame_5)
-        self.income_qt.setGeometry(QtCore.QRect(112, 220, 211, 40))
+        self.income_qt.setGeometry(QtCore.QRect(112, 173, 211, 40))
         self.income_qt.setMaximumSize(QtCore.QSize(16777215, 40))
         self.income_qt.setStyleSheet("QLineEdit{\n"
 "    background-color:white;\n"
@@ -1557,10 +1557,10 @@ class Ui_MainWindow(object):
 "    border:4px solid #c2dbfe;\n"
 "}\n"
 "")
-        self.income_qt.setMaxLength(2)
+        self.income_qt.setMaxLength(3)
         self.income_qt.setObjectName("income_qt")
         self.income_submit = QtWidgets.QPushButton(self.frame_5)
-        self.income_submit.setGeometry(QtCore.QRect(20, 277, 361, 41))
+        self.income_submit.setGeometry(QtCore.QRect(20, 230, 361, 41))
         font = QtGui.QFont()
         font.setFamily("SCG")
         font.setPointSize(15)
@@ -1588,58 +1588,6 @@ class Ui_MainWindow(object):
         self.income_submit.setChecked(False)
         self.income_submit.setAutoRepeat(False)
         self.income_submit.setObjectName("income_submit")
-        self.income_box_no = QtWidgets.QComboBox(self.frame_5)
-        self.income_box_no.setGeometry(QtCore.QRect(111, 170, 211, 40))
-        self.income_box_no.setMaximumSize(QtCore.QSize(16777215, 40))
-        font = QtGui.QFont()
-        font.setFamily("SCG")
-        font.setPointSize(15)
-        self.income_box_no.setFont(font)
-        self.income_box_no.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.income_box_no.setStyleSheet("QComboBox{    \n"
-"    background-color:white;\n"
-"    border-radius: 5px;\n"
-"    border:1px solid black;\n"
-"    padding-left:10px;\n"
-"}\n"
-"QComboBox::drop-down{\n"
-"    border:0px\n"
-"}\n"
-"\n"
-"QComboBox::down-arrow {\n"
-"    image:url(:/newPrefix/assets/arrow-down-sign-to-navigate.png);\n"
-"    width:15px;    \n"
-"    heigth:15px;\n"
-"    margin-right:15px;\n"
-"}\n"
-"QComboBox:on{\n"
-"    border:4px solid #c2dbfe;\n"
-"}\n"
-"\n"
-"QComboBox QListView{\n"
-"    background-color:white;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QComboBox QListView::item{\n"
-"    padding-left:10px;\n"
-"    border:1px solid rgba(0,0,0,10%);\n"
-"    background-color:#fff;\n"
-"    outline:0px;\n"
-"}\n"
-"")
-        self.income_box_no.setObjectName("income_box_no")
-        self.income_box_no.addItem("")
-        self.income_box_no.addItem("")
-        self.income_box_no.addItem("")
-        self.income_box_no.addItem("")
-        self.income_box_no.addItem("")
-        self.income_box_no.addItem("")
-        self.income_box_no.addItem("")
-        self.income_box_no.addItem("")
-        self.income_box_no.addItem("")
-        self.income_box_no.addItem("")
-        self.income_box_no.addItem("")
         self.label_32 = QtWidgets.QLabel(self.frame_5)
         self.label_32.setGeometry(QtCore.QRect(20, 125, 81, 32))
         font = QtGui.QFont()
@@ -1650,18 +1598,8 @@ class Ui_MainWindow(object):
 "    text-align:center;\n"
 "    font-size:15pt;")
         self.label_32.setObjectName("label_32")
-        self.label_36 = QtWidgets.QLabel(self.frame_5)
-        self.label_36.setGeometry(QtCore.QRect(20, 174, 81, 32))
-        font = QtGui.QFont()
-        font.setFamily("SCG")
-        font.setPointSize(15)
-        self.label_36.setFont(font)
-        self.label_36.setStyleSheet("color:white;\n"
-"    text-align:center;\n"
-"    font-size:15pt;")
-        self.label_36.setObjectName("label_36")
         self.label_37 = QtWidgets.QLabel(self.frame_5)
-        self.label_37.setGeometry(QtCore.QRect(22, 225, 81, 32))
+        self.label_37.setGeometry(QtCore.QRect(22, 178, 81, 32))
         font = QtGui.QFont()
         font.setFamily("SCG")
         font.setPointSize(15)
@@ -1715,11 +1653,10 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.big_db_btn.setText(_translate("MainWindow", " Data Base"))
         self.big_menu_btn.setWhatsThis(_translate("MainWindow", "<html><head/><body><p><img src=\":/newPrefix/assets/SDE-Logo-Login_mini.png\"/></p></body></html>"))
-        self.big_controller_btn.setText(_translate("MainWindow", " Controller"))
         self.big_insign_bt.setText(_translate("MainWindow", " Insign"))
-        self.label.setText(_translate("MainWindow", "Controller Board : Erasing & Programming"))
+        self.big_controller_btn.setText(_translate("MainWindow", " Controller"))
+        self.big_db_btn.setText(_translate("MainWindow", " Data Base"))
         self.flashStatusLabel.setText(_translate("MainWindow", "Status : None"))
         self.label_28.setText(_translate("MainWindow", "Serial Monitor"))
         self.ap_enable.setText(_translate("MainWindow", "Protection"))
@@ -1741,6 +1678,7 @@ class Ui_MainWindow(object):
         self.error_type_box.setItemText(0, _translate("MainWindow", "Device Type"))
         self.error_type_box.setItemText(1, _translate("MainWindow", "Actuator Controller"))
         self.error_type_box.setItemText(2, _translate("MainWindow", "Sensor Controller"))
+        self.label.setText(_translate("MainWindow", "Controller Board : Erasing & Programming"))
         self.controller_finder_status.setText(_translate("MainWindow", "Status : None"))
         self.mcu_status.setItemText(0, _translate("MainWindow", "Status"))
         self.mcu_status.setItemText(1, _translate("MainWindow", "Good"))
@@ -1771,18 +1709,6 @@ class Ui_MainWindow(object):
         self.incom_date.setPlaceholderText(_translate("MainWindow", "L-20XXXXXX-XX"))
         self.income_qt.setPlaceholderText(_translate("MainWindow", "Quantity (pcs)"))
         self.income_submit.setText(_translate("MainWindow", "Submit"))
-        self.income_box_no.setItemText(0, _translate("MainWindow", "Box No."))
-        self.income_box_no.setItemText(1, _translate("MainWindow", "01"))
-        self.income_box_no.setItemText(2, _translate("MainWindow", "02"))
-        self.income_box_no.setItemText(3, _translate("MainWindow", "03"))
-        self.income_box_no.setItemText(4, _translate("MainWindow", "04"))
-        self.income_box_no.setItemText(5, _translate("MainWindow", "05"))
-        self.income_box_no.setItemText(6, _translate("MainWindow", "06"))
-        self.income_box_no.setItemText(7, _translate("MainWindow", "07"))
-        self.income_box_no.setItemText(8, _translate("MainWindow", "08"))
-        self.income_box_no.setItemText(9, _translate("MainWindow", "09"))
-        self.income_box_no.setItemText(10, _translate("MainWindow", "10"))
         self.label_32.setText(_translate("MainWindow", "Lot No."))
-        self.label_36.setText(_translate("MainWindow", "Box No."))
         self.label_37.setText(_translate("MainWindow", "Quantity"))
 import sde_rc

@@ -64,15 +64,17 @@ def lot_id_box(ui) :
 
 def issue_update(ui):
     issue_input = ui.issue_input.text()
-    error_type_text = ui.error_type.currentText()
+    #error_type_text = ui.error_type.currentText()
     error_type_index = ui.error_type.currentIndex()
+    error_type_text = ["","All","Actuator Controller","Sensor Controller"]
     print(len(issue_input))
     if len(issue_input) > 0  and error_type_index > 0 :
         # ADD Data ===========================================================================================================
         print(issue_input)
         print(error_type_text)
         dt_string = get_date_time()
-        income_db = "('"+issue_input+"','"+error_type_text+"','0','"+dt_string+"')"
+        income_db = "('"+issue_input+"','"+error_type_text[error_type_index]+"','0','"+dt_string+"')"
+        print(income_db)
         device_db_table = "db_sde.devices_income_issue"
         device_sensor = db_connect()
         device_sensor.connect_sql_insert(device_db_table,income_db)
@@ -105,7 +107,7 @@ def issue_list(ui) :
 def set_issue_reject_box(ui) :
     f_select = "issue_name"
     t_select = "db_sde.devices_income_issue"
-    c_select = [None,"device_type = 'Actuator Controller 3CH' or device_type = 'All' ","device_type = 'Sensor Controller' or device_type = 'All' "]
+    c_select = [None,"device_type = 'Actuator Controller' or device_type = 'All' ","device_type = 'Sensor Controller' or device_type = 'All' "]
     issue_array = []
     ui.error_point_Box.clear()
     db_con = db_connect()
@@ -142,17 +144,20 @@ def addDevice_action(ui,qty_status,device_type):
         table_select = 'db_sde.devices_income_lot'
         condetion = "lot_no = '"+lot_reject+"'"
         qty_con = db_connect()
+        qty_num = []
         qty_con.connect_select(table_select,condetion,feild_select)
         for qty in qty_con :
+            qty_num.append(qty)
             pass
-        inspected_qty = str(qty[1]+1)
+        print(qty_num)
+        #inspected_qty = str(qty_num[1]+1)
         if qty_status == 'ng_product' :
             device_type = ui.error_type_box.currentIndex() > 0
         else :
-            device_type != ''   
+            print("GOOD Product")   
         if device_type :
+                    print("ADD BAD Device")
                     if qty_status == 'ng_product' :
-                        uif.add_bad_device_event(ui,inspected_qty)
                         f_select = ['qty_ng_product',qty_status,'qty_inspected']
                         t_select = ["db_sde.devices_income_issue","db_sde.devices_income_lot","db_sde.devices_income_lot"]
                         c_select = ["issue_name = '"+action_case+"' ","lot_no = '"+lot_reject+"'","lot_no = '"+lot_reject+"'"]
