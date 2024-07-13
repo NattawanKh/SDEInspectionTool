@@ -116,13 +116,13 @@ def add_good_device_event(ui):
         return
     else:
             srr.testing_event(ui)
-    
-    mac_id_list.append([mac_id, 'note'])
-    if len(mac_id_list) == 3:
-        log.write_csv(['macID', 'note'], mac_id_list, "JLink/database/devices.csv")
-        for device in mac_id_list:
-            log.update_print_label_by_mac_id(device[0])
-        mac_id_list = []
+            mac_id_list.append([mac_id, 'GOOD',''])
+            #mac_id_list.append([mac_id, 'GOOD']) ##### Old
+            if len(mac_id_list) == 3:
+                log.write_csv(['macID', 'note'], mac_id_list, "JLink/database/devices.csv")
+                for device in mac_id_list:
+                    log.update_print_label_by_mac_id(device[0])
+                mac_id_list = []
 
 
     
@@ -159,7 +159,6 @@ def add_bad_device_event(ui):  #### UPDATE
             mac_id_list = []
             mcu_data_list = []
         populate_table_view(ui.devicesTableView, header, mcu_data_list)
-
 
 def clear_list_event(ui):
     global mac_id_list

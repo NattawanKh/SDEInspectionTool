@@ -3,10 +3,15 @@ import serial.tools.list_ports
 import JLink.serialReader as srr
 import JLink.insign_db as insign_db 
 from JLink.controller_data import *
+from PyQt5.QtGui import QIntValidator
 
+def set_lineedit_int_only(line_edit):
+    validator = QIntValidator()
+    line_edit.setValidator(validator)
 
 def button_interface(ui):
     # Helper Functions
+    set_lineedit_int_only(ui.income_qt) 
     def connect_buttons(buttons, function):
         for button in buttons:
             button.clicked.connect(function)

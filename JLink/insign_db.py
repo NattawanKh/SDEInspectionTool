@@ -1,15 +1,9 @@
-from PyQt5.QtWidgets import QLineEdit
-from PyQt5.QtGui import QIntValidator,QStandardItemModel, QStandardItem
+from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from sqlite_dbcon import db_connect
-import JLink.ui_funciton as uif
 from utils import *
 
-def set_lineedit_int_only(line_edit):
-    validator = QIntValidator()
-    line_edit.setValidator(validator)
 #================================================================================================================================================================
 def incoming_device(ui):
-    set_lineedit_int_only(ui.income_qt) 
     lot_no = ui.incom_date.text()
     device_qt  = ui.income_qt.text()
     null_space = 0
