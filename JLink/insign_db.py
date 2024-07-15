@@ -46,12 +46,15 @@ def lot_id_box(ui) :
     c_select = "status = '0'"
     lot_id_array = []
     ui.boxlot_Box.clear()
+    ui.boxlot_finder.clear()
+    ui.boxlot_finder.addItem("Lot No.")
     db_con = db_connect()
     db_con.connect_select(t_select,c_select,f_select)
     for lot_id_list in db_con :
         lot_id_array.append(lot_id_list)
     for lot_id_fill in lot_id_array :
         ui.boxlot_Box.addItem(lot_id_fill[0])
+        ui.boxlot_finder.addItem(lot_id_fill[0])
     pass
 
 #================================================================================================================================================================
@@ -60,12 +63,10 @@ def issue_update(ui):
     issue_input = ui.issue_input.text()
     #error_type_text = ui.error_type.currentText()
     error_type_index = ui.error_type.currentIndex()
-    error_type_text = ["","All","Actuator Controller","Sensor Controller"]
+    error_type_text = ["","All","Actuator Controller 3CH","Sensor Controller"]
     print(len(issue_input))
     if len(issue_input) > 0  and error_type_index > 0 :
         # ADD Data ===========================================================================================================
-        print(issue_input)
-        print(error_type_text)
         dt_string = get_date_time()
         income_db = "('"+issue_input+"','"+error_type_text[error_type_index]+"','0','"+dt_string+"')"
         print(income_db)

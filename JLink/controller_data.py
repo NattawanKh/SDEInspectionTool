@@ -17,6 +17,7 @@ def onboard_show(ui):
     data_test = []
     select_time = ui.time_frame.currentIndex()
     select_type = ui.device_type.currentIndex()
+    select_lot = ui.boxlot_finder.currentIndex()
     # Time Frame Management ===========================================================================================================================
     select_time_frame = [get_date_one_thousand_year_ago(),get_date_one_hour_ago(),get_date_one_day_ago(),get_date_one_week_ago(),get_date_one_month_ago(),get_date_one_year_ago()]
     in_between = "create_at BETWEEN '"+select_time_frame[select_time]+"' AND '"+get_date_time_db()+"'"
@@ -35,6 +36,12 @@ def onboard_show(ui):
         search_id = device_id[1]
         ui.device_id_input.clear()
     #============================================================================================================
+    lot_number = ui.boxlot_finder.currentText()
+    device_lot = ['',"AND lot_box_id = '"+lot_number+"' "]
+    if select_lot == 0 :
+        chosen_lot = device_lot[0]
+    else :
+        chosen_lot = device_lot[1]
     # Device Status Condition =====================================================================================
     device_status = ['',"AND inspec_note = 'GOOD' ","AND inspec_note = 'NG' "] ### Edit to AC back
     device_status_index = ui.mcu_status.currentIndex()
@@ -54,7 +61,7 @@ def onboard_show(ui):
                 ,"create_at,device_id,current_1st,current_2nd,current_3rd,current_4th,issue_name"
                 ,"create_at,device_id,pm_2_5,scd_co2,scd_temp,scd_hum,issue_name"]
     t_select = "db_sde.devices_income"
-    c_select = ""+in_between+" "+device_type[select_type]+" "+search_id+"  "+device_status_selected+" "
+    c_select = ""+in_between+" "+device_type[select_type]+" "+search_id+"  "+device_status_selected+"  "+chosen_lot+" "
     ui.controller_finder_status.setText(set_time_text)
     db_con = db_connect()
     db_con.connect_select(t_select,c_select,f_select[select_type])
