@@ -24,14 +24,14 @@ def reset() :
         print("Error executing command:", e)
 
 def eraseall() :
-    eraseall = "nrfjprog -f NRF52 --eraseall  \n"
+    eraseall = "nrfjprog -f NRF52 --eraseall \n"
     try:
     # Execute the command
         subprocess.run(eraseall, check=True)
         print("Command executed successfully.")
     except subprocess.CalledProcessError as e:
         print("Error executing command:", e)
-    pass
+        pass
 
 
 def protection() :

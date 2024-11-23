@@ -8,7 +8,9 @@
     <file>assets/y-integrated-circuit-64 (1).ico</file>
     <file>assets/SDE-Logo-Login.png</file>
   </qresource>
-  <qresource/>
+  <qresource>
+    <file>sde.qrc</file>
+  </qresource>
   <qresource prefix="icon">
     <file>assets/printer-64 (1).ico</file>
     <file>assets/delete-property-64 (2).ico</file>

@@ -6,8 +6,14 @@ class db_connect():
     
     def __init__(self):
         
+        # ES Test
+        #self.conn_db = mysql.connector.connect(host="172.16.0.228", database='db_sde',user="admin",password="1QAZ2wsx")
+        # Office
         self.conn_db = mysql.connector.connect(host="172.16.0.227", database='db_sde',user="admin",password="Banana-Pi00")
-        
+        # Office
+        #self.conn_db = mysql.connector.connect(host="DESKTOP-E43V24R", database='db_sde',user="admin",password="Banana-Pi00")
+
+
         try:
             if self.conn_db.is_connected():
                 pass

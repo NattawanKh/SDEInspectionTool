@@ -3,6 +3,9 @@
  (c) All Right Reserved SDE Inspection Software 2024
 '''
 
+# Actuator can fix current tororent value 
+# Sensor Controller Should be read form master board 
+
 import serial
 import struct
 import JLink.jlink as jlink
@@ -10,21 +13,19 @@ from utils import *
 import threading
 import JLink.ui_funciton as uif
 import JLink.db_controller as db_mcu
-from PyQt5 import QtGui
+import JLink.limitter as comperator
 import time
 from PyQt5.QtCore import QObject, pyqtSignal, QThread
 from PyQt5.QtGui import QTextCursor
 
 # Define the serial port and baudrate
 baud_rate = 115200
-# All-Porpose Variable =================================
-dt_string = get_date_time()
 
 def testing_event(ui):
     thr = threading.Thread(target=ReadSerial_Controller, args=[ui])
     thr.start() 
     ui.flashStatusLabel.setText(
-            "<span style=\"color:orange\">Inspection In Progress </span></p>")
+            "Status : <span style=\"color:orange\">Inspection In Progress, PRESS S1 </span></p>")
 
 # Read Serial Port =====================================
 def ReadSerial_Controller(ui):
@@ -49,25 +50,37 @@ def ReadSerial_Controller(ui):
             line = ser.readline().decode('utf-8', errors='ignore').strip()
             
 # the received Sensor Data ==========================================================================================
-            if line.startswith('<info> app: sensor type co2,temp,humid:'):
+            if line.startswith('<info> app: sensor_type,data_1,data_2,data_3:'):
                 device_type = 'Sensor Controller'
                 sensor_data = line.strip()
-                raw_data = sensor_data[40:]
+                raw_data = sensor_data[46:]
+                print(raw_data)
+                #print("--------------------------")
+                #print(raw_data)
+                #print("--------------------------")
                 if raw_data.startswith("2") :
                     pm_array = raw_data.split(',')
+                    #print(pm_array)
                     pm_array = pm_array[1:]
-                    for pm in pm_array :  
+                    for pm in pm_array :
+                        #print(pm)  
                         pm_pack = struct.pack('I', int(pm))
+                        print(pm_pack)
                         pm_float = struct.unpack('f', pm_pack)[0]
                         pm_float = int(pm_float)
                         pm_stack.append(pm_float)
+                    #print("PM========================")
                     #print(pm_stack)
                 if raw_data.startswith("3") :
                     scd_array = raw_data.split(',')
-                    scd_array = scd_array[1:]
                     #print(scd_array)
-                    for scd in scd_array :  
+                    scd_array = scd_array[1:]
+                    #print("SCD========================")
+                    #print(scd_array)
+                    for scd in scd_array :
+                        #print(scd)  
                         scd_pack = struct.pack('I', int(scd))
+                        print(scd_pack)
                         scd_float = struct.unpack('f', scd_pack)[0]
                         scd_float = int(scd_float)
                         scd_stack.append(scd_float)
@@ -101,23 +114,39 @@ def ReadSerial_Controller(ui):
                 break
     except serial.SerialException as e:
         print("Error opening or reading serial port:", e)
+        print("Error opening or reading serial port:", e)
+        if ser.is_open:
+                    ser.close()
 
     finally:
         # Close the serial port
         if ser.is_open:
             ser.close()
             print("Status : Serial port are closed.")
+            
 def end_process_(ui,controller_type,first_stack,second_stack):
         mac_id = jlink.mac_id_check()
-        uif.onboard_data_ui(ui,controller_type,first_stack,second_stack)
-        db_mcu.device_update(ui,mac_id,controller_type,first_stack,second_stack)
-        if ui.ap_enable.isChecked()  :
+        print(controller_type)
+        for first in first_stack :
+            print(first)
+        for second in second_stack :
+            print(second)
+        #-------------------------------------------------------------------------------
+        if controller_type.startswith('Sensor'):
+            comperator.Comparator(ui,mac_id,controller_type,first_stack,second_stack)
+            status = comperator.return_status()
+        elif controller_type.startswith('Actuator'):
+            comperator.Comparator(ui,mac_id,controller_type,first_stack,second_stack)
+        #-------------------------------------------------------------------------------
+        if status.startswith("GOOD") :
+            uif.afterLife_event(ui)
+            ui.flashStatusLabel.setText(
+                    "Status : <span style=\"color:ORANGE\">Production Process Inprogress</span></p>")
+        elif status.startswith("NG") :
             jlink.protection()
+            jlink.recover()
             ui.flashStatusLabel.setText(
-                "<span style=\"color:green\">Inspection Complete | Protection : On</span></p>")
-        else :
-            ui.flashStatusLabel.setText(
-                "<span style=\"color:green\">Inspection Complete | </span></p>""<span style=\"color:RED\"> Protection : Off</span></p>")
+                    "Status : <span style=\"color:green\">Process Complete </span></p>")
 #==================================================================================================================================================================================
 # Flag to control the reading process
 reading = False
@@ -172,6 +201,7 @@ def start_reading(ui):
     serial_reader.new_data.connect(lambda line: update_ui(ui, line))
     serial_reader.error_occurred.connect(lambda error: ui.serial_monitor.append(error))
     serial_reader.start_reading()
+    ui.serial_monitor.clear()
     ui.serial_monitor.append("Started reading from the serial port.")
 
 # Function to stop reading

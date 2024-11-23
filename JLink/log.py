@@ -4,6 +4,7 @@ from sqlite_dbcon import db_connect
 from utils import *
 
 def write_csv(fieldnames, data_list, file_path):
+    pass
     # Check if the output file already exists and delete it
     if os.path.exists(file_path):
         os.remove(file_path)

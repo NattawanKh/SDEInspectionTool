@@ -22,9 +22,9 @@ def onboard_show(ui):
     select_time_frame = [get_date_one_thousand_year_ago(),get_date_one_hour_ago(),get_date_one_day_ago(),get_date_one_week_ago(),get_date_one_month_ago(),get_date_one_year_ago()]
     in_between = "create_at BETWEEN '"+select_time_frame[select_time]+"' AND '"+get_date_time_db()+"'"
     # Device Header Table  ======================================================================================
-    data_Header = (["Date","Device ID","Type","Defect"],
-                   ["Date","Device ID","HIGH","OFF","LOW","MID","Defect"],
-                   ["Date","Device ID"," PM2.5(ug/m3) "," CO2(ppm) "," Temp(*C) "," Humid(%) ","Defect"])
+    data_Header = (["Date","Device ID","Type"],
+                   ["Date","Device ID","HIGH","OFF","LOW","MID"],
+                   ["Date","Device ID"," PM2.5(ug/m3) "," CO2(ppm) "," Temp(*C) "," Humid(%) "])
     # Device Data Condition =====================================================================================
     device_type = ['',"AND devices_type LIKE '%Actuator%' ","AND devices_type LIKE '%Sensor%' "] ### Edit to AC back
     nrf_id = ui.device_id_input.text()
@@ -57,9 +57,9 @@ def onboard_show(ui):
         set_time_text = "Time Frame : <span style=\"color:Green\">"+select_time_frame[select_time]+   "     ---->   "   +get_date_time_db()+"</span></p>"
     #============================================================================================================
     # Select Data to Show
-    f_select = ["create_at,device_id,devices_type,issue_name"
-                ,"create_at,device_id,current_1st,current_2nd,current_3rd,current_4th,issue_name"
-                ,"create_at,device_id,pm_2_5,scd_co2,scd_temp,scd_hum,issue_name"]
+    f_select = ["create_at,device_id,devices_type"
+                ,"create_at,device_id,current_1st,current_2nd,current_3rd,current_4th"
+                ,"create_at,device_id,pm_2_5,scd_co2,scd_temp,scd_hum"]
     t_select = "db_sde.devices_income"
     c_select = ""+in_between+" "+device_type[select_type]+" "+search_id+"  "+device_status_selected+"  "+chosen_lot+" "
     ui.controller_finder_status.setText(set_time_text)
