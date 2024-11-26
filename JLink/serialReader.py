@@ -29,6 +29,8 @@ def testing_event(ui):
 
 # Read Serial Port =====================================
 def ReadSerial_Controller(ui):
+    # message = "Inspection In Progress, PRESS S1"
+    # comperator.alert_helper.show_alert_signal.emit(message)
     # Actuator Variable ====================================
     act_stack = []
     curr_stack = []
@@ -132,11 +134,8 @@ def end_process_(ui,controller_type,first_stack,second_stack):
         for second in second_stack :
             print(second)
         #-------------------------------------------------------------------------------
-        if controller_type.startswith('Sensor'):
-            comperator.Comparator(ui,mac_id,controller_type,first_stack,second_stack)
-            status = comperator.return_status()
-        elif controller_type.startswith('Actuator'):
-            comperator.Comparator(ui,mac_id,controller_type,first_stack,second_stack)
+        comperator.Comparator(ui,mac_id,controller_type,first_stack,second_stack)
+        status = comperator.return_status()
         #-------------------------------------------------------------------------------
         if status.startswith("GOOD") :
             uif.afterLife_event(ui)

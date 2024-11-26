@@ -165,6 +165,8 @@ def add_good_device_event(ui):
         return
     else:
             srr.testing_event(ui)
+            message = "Inspection In Progress, PRESS S1"
+            pop_up.alert_helper.show_alert_signal.emit(message)
             #mac_id_list.append([mac_id, 'GOOD',''])
             mac_id_list.append([mac_id, 'GOOD']) ##### Old
             if len(mac_id_list) == 3:

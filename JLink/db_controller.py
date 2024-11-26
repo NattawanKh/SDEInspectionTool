@@ -22,7 +22,7 @@ def device_update(ui,mac_id,controller_type,first_stack,second_stack,note):
     fw_version = uif.production_fw_path(ui)
     #==============================================================
     this_mac_con = db_connect()
-    condition = "device_id = '"+mac_id+"' AND lot_box_id = '"+box_lot_id+"'"
+    condition = "device_id = '"+mac_id+"' AND lot_box_id = '"+box_lot_id+"' AND inspec_note = 'GOOD' "
     this_mac_con.connect_select(t_select,condition,f_select)
     this_mac_array = []
     for this_mac in this_mac_con :
@@ -113,8 +113,8 @@ def device_update(ui,mac_id,controller_type,first_stack,second_stack,note):
                     set_to = ""+update[0]+" = '"+(update[1])+"'"
                     #print(set_to)
                     #print("--------------------------------------------------------------------------------")
-                    db_con_up = db_connect()
-                    db_con_up.connect_update(t_select,set_to,where)
+                    # db_con_up = db_connect()
+                    # db_con_up.connect_update(t_select,set_to,where)
 #==========================================================================================================================================================================================================================================================================================================================================================================================================================
 def reject_device(ui,device_id,device_type,timestamp) :
     # Check Duplicate Device ID ===================================

@@ -8,8 +8,10 @@ class db_connect():
         
         # ES Test
         #self.conn_db = mysql.connector.connect(host="172.16.0.228", database='db_sde',user="admin",password="1QAZ2wsx")
+        #ES Test
+        self.conn_db = mysql.connector.connect(host="192.168.3.116", database='db_sde',user="admin",password="Banana-Pi00")
         # Office
-        self.conn_db = mysql.connector.connect(host="172.16.0.227", database='db_sde',user="admin",password="Banana-Pi00")
+        #self.conn_db = mysql.connector.connect(host="172.16.0.227", database='db_sde',user="admin",password="Banana-Pi00")
         # Office
         #self.conn_db = mysql.connector.connect(host="DESKTOP-E43V24R", database='db_sde',user="admin",password="Banana-Pi00")
 

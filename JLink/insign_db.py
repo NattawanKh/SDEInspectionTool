@@ -27,8 +27,8 @@ def incoming_device(ui):
         device_sensor = db_connect()
         device_sensor.connect_sql_insert(device_db_table,income_db)
         # SHOW STATUS ========================================================================================================
-        ui.insign_status.setText(
-            "<span style=\"color:WHITE\">Status : </span></p>   <span style=\"color:#4CAF50\">Update Incoming Lot </span></p>")
+        # ui.insign_status.setText(
+        #     "<span style=\"color:WHITE\">Status : </span></p>   <span style=\"color:#4CAF50\">Update Incoming Lot </span></p>")
         # Clear Input ========================================================================================================
         #ui.income_qt.clear()
         ui.incom_date.clear()
@@ -54,9 +54,23 @@ def incoming_list(ui,status) :
     f_select = "lot_no,qty_inspected,good_product,ng_product"
     t_select = "db_sde.devices_income_lot"
     c_select = "status = '"+str(status)+"' AND lot_no like '%"+ui.lot_finder.text()+"%'"
+    #-------------------------------------------------------------------------------------------------
+    # data_set = 'F4CE36'
+    # total_f_select = "device_id"
+    # total_t_select = "db_sde.devices_income"
+    # total_c_select = " lot_no like '%"+ui.lot_finder.text()+"%' AND device_id like '%"+data_set+"%' "
+    # ------------------------------------------------------------------------------------------------
     issue_array = []
     db_con = db_connect()
     db_con.connect_select(t_select,c_select,f_select)
+    # ------------------------------------------------------------------------------------------------
+    # total_array = []
+    # total_db_con = db_connect()
+    # total_db_con.connect_select(total_t_select,total_c_select,total_f_select)
+    # for total_data in  total_db_con :
+    #      total_array.append(total_data)
+
+    #columnHeaders = ["Lot No.","Test Round","Good","NG","Quantity"]
     columnHeaders = ["Lot No.","Quantity","Good","NG"]
     for issue in db_con :
         issue_array.append(issue)
